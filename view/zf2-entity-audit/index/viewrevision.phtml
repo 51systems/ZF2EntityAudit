@@ -29,7 +29,7 @@
                     <?php $id = $ce->getId(); ?>
                     <td>
                         <a href="<?php echo $this->url(
-                            "audit_viewdetails",
+                            "audit/viewdetails",
                             array(
                                 "id" => $id["id"] ,
                                 "className" => str_replace('\\', '_', $ce->getClassName()),

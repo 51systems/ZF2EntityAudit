@@ -270,9 +270,9 @@ class Reader
             return new Revision(
                 $revisionsData[0]['id'],
                 \DateTime::createFromFormat($this->platform->getDateTimeFormatString(), $revisionsData[0]['timestamp']),
-                $this->ZfcUserRepository->find($revisionsData[0]['user_id'],
+                $revisionsData[0]['user_id'] != null? $this->ZfcUserRepository->find($revisionsData[0]['user_id']): null,
                 $revisionsData[0]["note"],
-                $revisionsData[0]["ipaddress"])
+                $revisionsData[0]["ipaddress"]
             );
         } else {
             throw Exception::invalidRevision($rev);
@@ -324,7 +324,7 @@ class Reader
             $revisions[] = new Revision(
                 $row['id'],
                 \DateTime::createFromFormat($this->platform->getDateTimeFormatString(), $row['timestamp']),
-                $this->ZfcUserRepository->find($row['user_id']),
+                $row['user_id'] != null? $this->ZfcUserRepository->find($row['user_id']): null,
                 $row["note"],
                 $row["ipaddress"]
             );
